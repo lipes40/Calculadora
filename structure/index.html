@@ -49,7 +49,7 @@
   .trilho{
       width: 90px;
       height: 40px;
-      background-color: gray;
+      background-color: white;
       border-radius: 20px;
       position: absolute;
       top: 10px;
@@ -60,7 +60,7 @@
       width: 40px;
       height: 100%;
       border-radius: 50%;
-      background-color: rgb(255, 255, 255);
+      background-color: black;
       transform: scale(.8);
       position: absolute;
       left: 0;
@@ -81,7 +81,7 @@
   }
 
   .trilho.dark .indicador{
-      background-color: black;
+      background-color: white;
       left: 50px;
   }
 
@@ -102,7 +102,7 @@
   <input type="button" value="8" onclick="appendToResult('8')">
   <input type="button" value="9" onclick="appendToResult('9')">
 
-  <input type="button" value="+" onclick="appendToResult('+')">
+  <input type="button"value="+" onclick="appendToResult('+')">
 
   <input type="button" value="4" onclick="appendToResult('4')">
   <input type="button" value="5" onclick="appendToResult('5')">
@@ -111,7 +111,7 @@
   <input type="button" value="-" onclick="appendToResult('-')">
 
   <input type="button" value="1" onclick="appendToResult('1')">
-  <input type="button" value="2" onclick="appendToResult('2')">
+  <input type="button" class="buttons" value="2" onclick="appendToResult('2')">
   <input type="button" value="3" onclick="appendToResult('3')">
 
   <input type="button" value="*" onclick="appendToResult('*')">
@@ -121,7 +121,7 @@
   <input type="button" value="=" onclick="calculate('=')">
 
       
-  <input type="button" value="/" onclick="appendToResult('/')">  
+  <input type="button" class="buttons" value="/" onclick="appendToResult('/')">  
 
   </div>
       <script>
@@ -145,6 +145,7 @@
           let r = 0, g = 0, b = 0;
           let stepR = 1, stepG = 2, stepB = 3; // velocidades diferentes para cada cor
           let on = false
+          const buttons = document.querySelectorAll('input[type="button"]');
 
       function updateColor() {
         r += stepR;
@@ -158,9 +159,13 @@
         const color = `rgb(${r}, ${g}, ${b})`;
         
         if(on){
-          document.getElementById("colorBox").style.borderColor = color
+          document.querySelector(".calculator").style.borderColor = color
       
           document.getElementById("colorText").style.color = color
+
+          buttons.forEach(btn => {
+            btn.style.color = color
+          });
 
           document.getElementById("result").style.color = color
 
@@ -185,6 +190,10 @@
       document.getElementById("result").style.color = "white"
 
       document.getElementById("trilho").style.backgroundColor = "white"
+
+      buttons.forEach(btn => {
+            btn.style.color = "white"
+          });
     }
     trilho.classList.toggle('dark')
 
