@@ -46,10 +46,53 @@
       align-items: center;
   }
 
+.trilho{
+    width: 90px;
+    height: 40px;
+    background-color: gray;
+    border-radius: 20px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.indicador{
+    width: 40px;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    transform: scale(.8);
+    position: absolute;
+    left: 0;
+    transition: .2s;
+}
+
+body.dark{
+    background: linear-gradient(180deg, rgb(26, 26, 26), rgb(92, 92, 92));
+    color: white;
+}
+
+body.dark span{
+    color: white;
+}
+
+.trilho.dark {
+    background-color: white;
+}
+
+.trilho.dark .indicador{
+    background-color: black;
+    left: 50px;
+}
+
     </style>
     </head>
     <body>
 <h1 id="colorText">welcome to the calculator!</h1>
+
+  <div class="trilho">
+      <div class="indicador"></div>
+  </div>
 
 <div class="calculator" id="colorBox">
 
@@ -101,6 +144,7 @@
         
         let r = 0, g = 0, b = 0;
         let stepR = 1, stepG = 2, stepB = 3; // velocidades diferentes para cada cor
+        let on = false
 
     function updateColor() {
       r += stepR;
@@ -112,12 +156,33 @@
       if (b > 255 || b < 0) stepB = -stepB;
 
       const color = `rgb(${r}, ${g}, ${b})`;
-      document.getElementById("colorBox").style.borderColor = color
+      
+      if(on){
+        document.getElementById("colorBox").style.borderColor = color
     
-      document.getElementById("colorText").style.color = color
+        document.getElementById("colorText").style.color = color
+
+        document.Type.style.color = color
+      }
     }
 
     setInterval(updateColor, 10);
+
+    const trilho = document.querySelector(".trilho")
+
+trilho.addEventListener('click', () => {
+  if(!on){
+    on = true
+  }
+  else{
+    on = false
+    document.getElementById("colorBox").style.borderColor = "white"
+    
+    document.getElementById("colorText").style.color = "white"
+  }
+  trilho.classList.toggle('dark')
+
+})
 
   </script>
 </body>
