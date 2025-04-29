@@ -90,7 +90,7 @@
       <body>
   <h1 id="colorText">welcome to the calculator!</h1>
 
-    <div class="trilho">
+    <div class="trilho" id="trilho">
         <div class="indicador"></div>
     </div>
 
@@ -163,6 +163,8 @@
           document.getElementById("colorText").style.color = color
 
           document.getElementById("result").style.color = color
+
+          document.getElementById("trilho").style.backgroundColor = color
         }
       }
 
@@ -181,6 +183,8 @@
       document.getElementById("colorText").style.color = "white"
 
       document.getElementById("result").style.color = "white"
+
+      document.getElementById("trilho").style.backgroundColor = "white"
     }
     trilho.classList.toggle('dark')
 
